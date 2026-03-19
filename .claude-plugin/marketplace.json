@@ -1,0 +1,44 @@
+{
+  "name": "talos-marketplace",
+  "description": "TALOS — persistent second brain for Claude. Memory, recall, knowledge management via Obsidian vault.",
+  "owner": {
+    "name": "Craig Smith"
+  },
+  "plugins": [
+    {
+      "name": "talos-base",
+      "description": "Core brain access — persistent memory, semantic search, capture, reflection, knowledge gaps, contradiction detection",
+      "version": "1.0.0",
+      "source": "./plugins/talos-base",
+      "category": "productivity"
+    },
+    {
+      "name": "talos-code",
+      "description": "Development workflow — plan, execute, review, simplify, risk analysis with persistent project memory",
+      "version": "1.0.0",
+      "source": "./plugins/talos-code",
+      "category": "development"
+    },
+    {
+      "name": "talos-thoughts",
+      "description": "Structured thinking — brainstorming, Socratic dialogue, idea evaluation, deep research",
+      "version": "1.0.0",
+      "source": "./plugins/talos-thoughts",
+      "category": "productivity"
+    },
+    {
+      "name": "talos-study",
+      "description": "Learning workflow — Socratic tutoring, proficiency tracking, course management, Feynman technique",
+      "version": "1.0.0",
+      "source": "./plugins/talos-study",
+      "category": "productivity"
+    },
+    {
+      "name": "talos-career",
+      "description": "Career workflow — job applications, interview prep, networking, follow-up tracking",
+      "version": "1.0.0",
+      "source": "./plugins/talos-career",
+      "category": "productivity"
+    }
+  ]
+}
