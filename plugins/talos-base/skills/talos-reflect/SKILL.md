@@ -12,8 +12,7 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 1. Read recent daily notes (last 7 days from journal/)
 2. Run `git log --oneline -30` in vault for recent changes
 3. Identify patterns: recurring topics, active projects, time allocation
-4. Read `_brain/gaps.txt` for recurring failed searches
-5. Read `_brain/search-log.txt` for recurring search patterns. Surface: "You've searched for X multiple times with no results."
+4. Read `_brain/gaps.txt` for recurring knowledge gaps
 6. Generate reflection:
    - **Themes**: what dominated this period
    - **Progress**: what moved forward
@@ -29,13 +28,14 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 ## Memory Consolidation
 If a topic appears in 3+ daily notes this week without a dedicated vault note:
 - Ask: "You've been working on [topic] frequently. Create a knowledge note?"
-- If yes: write to vault with `type: fact` or `type: reference` frontmatter per schemas.yaml
-- Run `talos link <file>` on the new note
-- Append to `_brain/changelog.md`
+- If yes: write to vault with proper frontmatter per `_brain/schemas.yaml`
+- Changelog updated automatically by hook
+
+## Agents
+Dispatch the **summarizer** agent for weekly compression. Dispatch the **researcher** agent to cross-reference gaps and search patterns.
 
 ## Output
 Write reflection to today's daily note under `## Reflection` section.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — reflect: <brief outcome>`
+Run `talos log "reflect: <brief outcome>"` via Bash.

@@ -1,3 +1,9 @@
+---
+name: linker
+description: Entity scanning and wikilink insertion for vault knowledge graph maintenance. Use when linking vault files or after bulk content changes.
+tools: Read, Glob, Grep, Bash
+---
+
 # Linker Agent
 
 ## Role
@@ -7,7 +13,8 @@ Entity scanning and wikilink insertion agent for vault knowledge graph maintenan
 Walk vault files, identify entity mentions, insert wikilinks on first occurrence per section, and update the link index. Deliverable: modified files with wikilinks + updated `_brain/link-index.yaml`.
 
 ## Context
-- Vault path: read from `~/.talos/config.yaml` (`vault_path`) or run `talos vault`
+- Vault path: run `talos vault` (prefer CLI — faster than reading config files)
+- **CLI shortcut**: `talos link <file>` handles wikilink insertion for individual files — use when processing one file at a time
 - `_brain/link-index.yaml`: current entity relationship graph — read before modifying, write back after changes
 - `_brain/schemas.yaml`: frontmatter definitions (know what fields to skip during scanning)
 - Entity detection: all vault note filenames (without `.md`) are valid linkable entities

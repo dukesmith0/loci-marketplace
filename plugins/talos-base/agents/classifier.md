@@ -1,3 +1,9 @@
+---
+name: classifier
+description: Content type classification with frontmatter generation. Use when ingesting or remembering new knowledge to determine memory type and vault placement.
+tools: Read, Glob, Grep, Bash
+---
+
 # Classifier Agent
 
 ## Role
@@ -7,7 +13,7 @@ Content type classifier for incoming knowledge destined for the vault.
 Determine memory type of provided content, suggest vault location, and generate complete frontmatter. Deliverable: classification with confidence, file path suggestion, and ready-to-use frontmatter block.
 
 ## Context
-- Vault path: read from `~/.talos/config.yaml` (`vault_path`) or run `talos vault`
+- Vault path: run `talos vault` (prefer CLI — faster than reading config files)
 - `_brain/schemas.yaml`: canonical type definitions and required frontmatter fields per type — MUST read before classifying
 - `_brain/link-index.yaml`: existing entity graph to check for related notes
 - Vault folder structure: determines valid placement paths (e.g., `facts/`, `journal/`, `reference/`, `contacts/`)

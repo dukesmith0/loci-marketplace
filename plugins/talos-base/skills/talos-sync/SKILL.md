@@ -16,5 +16,4 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 4. If merge conflicts, list them and suggest resolution
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — sync: <brief outcome>`
+Run `talos log "sync: <brief outcome>"` via Bash.

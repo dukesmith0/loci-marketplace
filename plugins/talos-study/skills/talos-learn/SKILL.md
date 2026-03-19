@@ -22,5 +22,4 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 Concise explanation calibrated to user's level. Not a lecture — a quick reference.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — learn: <brief outcome>`
+Run via Bash: `talos log "learn: <brief outcome>"`

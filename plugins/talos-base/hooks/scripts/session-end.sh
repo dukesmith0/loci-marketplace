@@ -6,7 +6,11 @@ VAULT=$(grep 'vault_path:' "$CONFIG" | sed 's/vault_path: *//' | tr -d '"' | tr 
 
 cd "$VAULT"
 if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
-  git add -A && git commit -m "session auto-save $(date +%Y-%m-%d_%H:%M)" 2>/dev/null
+  git add "*.md" "*.yaml" "*.txt" 2>/dev/null
+  git commit -m "session auto-save $(date +%Y-%m-%d_%H:%M)" 2>/dev/null
 fi
 
-which talos >/dev/null 2>&1 && talos update 2>/dev/null &
+if command -v talos >/dev/null 2>&1; then
+  talos sync 2>/dev/null
+  timeout 60 talos update 2>/dev/null &
+fi

@@ -9,10 +9,13 @@ description: Find orphan and stale files for archival
 Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/config.yaml`.
 
 ## Steps
-1. Run `talos index` via Bash if available
+1. Run `talos index` via Bash to refresh link graph
 2. Read `_brain/link-index.yaml` — find files with zero incoming links (orphans)
-3. Read `_brain/access-log.txt` — find files not accessed in 90+ days
+3. Check file modification dates via `git log` — find files not modified in 90+ days (stale)
 4. Cross-reference: orphans that are also stale are top candidates for archival
+
+## Agents
+Dispatch the **archivist** agent to cross-reference orphan and staleness data and generate recommendations.
 
 ## Output
 Table with columns: File | Last Accessed | Incoming Links | Recommendation
@@ -21,5 +24,4 @@ Recommendations: keep, archive, merge, delete
 Do NOT auto-delete. Present list and let user decide.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — cleanup: <brief outcome>`
+Run `talos log "cleanup: <brief outcome>"` via Bash.

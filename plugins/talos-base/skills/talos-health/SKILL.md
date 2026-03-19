@@ -14,10 +14,9 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 3. For any failures, suggest specific fix commands:
    - Missing _brain/ files → create from defaults
    - Broken links → run /talos-fix
-   - Stale index → run `talos update`
+   - Stale index → run `talos index`
    - Git dirty → suggest commit
-   - QMD out of sync → run `talos embed`
+   - QMD out of sync → run QMD `status` tool to check
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — health: <brief outcome>`
+Run `talos log "health: <brief outcome>"` via Bash.

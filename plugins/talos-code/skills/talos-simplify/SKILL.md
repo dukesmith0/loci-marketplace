@@ -20,14 +20,14 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
    - Unnecessary abstractions → inline
    - Complex conditionals → named booleans or lookup tables
 4. Refactor while preserving ALL functionality
-5. Run tests to verify no regressions
+5. Dispatch `talos-code:validator` agent to verify no regressions (run tests, check behavior)
 6. Commit with descriptive message
 
 ## Rules
 - Every simplification must preserve behavior
 - If unsure about a change, skip it and note it
 - Prefer readability over cleverness
+- Update `.talos/decisions.md` if refactoring changes architecture decisions
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — simplify: <brief outcome>`
+Run via Bash: `talos log "simplify: <brief outcome>"`

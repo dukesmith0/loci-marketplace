@@ -10,174 +10,74 @@ Idempotent — if `.talos/` exists, update and fill gaps. If new, create everyth
 ## Step 0: Resolve Environment
 Run `talos vault` via Bash to get vault path. Read `~/.talos/config.yaml` for full config.
 
-## Step 1: Dispatch Codebase Explorer Agent
+## Step 1: Analyze Codebase (read-only)
 
-**This step runs EVERY time**, even if `.talos/` exists. The analysis is needed to populate all files.
+**This step runs EVERY time**, even if `.talos/` exists. The analysis feeds all subsequent steps.
 
 Dispatch the `talos-code:codebase-explorer` agent with this prompt:
 
-> Analyze the project at `{{PROJECT_PATH}}`. Map the full architecture: tech stack with versions, directory structure (3 levels), all entry points, key components and responsibilities, build/test/lint commands, coding conventions, dependencies. Also grep for `TODO`, `FIXME`, `HACK`, `BUG`, `XXX` across the codebase and list them. Note any architectural decisions evident from the code (e.g., "ESM over CJS", "commander for CLI"). Note any risks (no tests, no CI, hardcoded secrets, missing error handling). Return everything as structured data.
+> Analyze the project at `{{PROJECT_PATH}}`. Map: tech stack with versions, directory structure (3 levels), all entry points, key components and responsibilities, build/test/lint commands, coding conventions, dependencies. Grep for `TODO`, `FIXME`, `HACK`, `BUG`, `XXX`. Note architectural decisions and risks. Also read README.md and any other .md documentation files for project context. Return everything as structured data.
 
-Wait for the agent to complete. Its output feeds Steps 3-5.
+Wait for the agent to complete. Its output feeds Steps 2-6.
 
-## Step 2: Read Templates
+## Step 2: Create/Update .talos/ Files
 
-1. Read `$VAULT/_templates/index.yaml` for the code-init file list
-2. Read each template from `$VAULT/_templates/code-init/`
-3. If user has added custom templates (e.g., `project-learning.md.tmpl`), include them too
-4. Substitute variables: `{{PROJECT_NAME}}`, `{{DATE}}` (YYYY-MM-DD format)
+Use `talos template` CLI to get template list if available. Otherwise create from scratch.
 
-## Step 3: Create/Update .talos/ Files
+**If `.talos/` does NOT exist**: Create all files populated with agent data.
 
-**If `.talos/` does NOT exist**: Create all files from templates, populated with agent data.
+**If `.talos/` ALREADY exists**: Read each file. If tables are empty or content is placeholder, populate from agent data. If real user content exists, preserve it and add missing sections only.
 
-**If `.talos/` ALREADY exists**: Read each existing file. If the file has empty tables or placeholder content (no rows, empty overview), POPULATE with agent data. If the file has real user content, preserve it and only add missing sections. Always create missing files.
+### Files to create/update:
 
-### .talos/index.md — Project Overview (ALWAYS populate)
+- **`.talos/index.md`** — Full project overview. MUST include: Overview, Tech Stack table, Structure table, Entry Points, Key Components, Dependencies, Conventions, Architecture Notes. Populate every section from agent output.
+- **`.talos/plan.md`** — Create from template if missing. Don't overwrite if it has items.
+- **`.talos/bugs.md`** — Populate with TODOs/FIXMEs/HACKs found by agent. Preserve existing entries.
+- **`.talos/decisions.md`** — Populate with architectural decisions found by agent. Preserve existing entries.
+- **`.talos/risks.md`** — Populate with risks found by agent. Preserve existing entries.
 
-This is the project's brain entry. Fill EVERY section from the codebase-explorer output:
+**CRITICAL**: Every file must have real content after init. No empty tables.
 
+## Step 3: Merge CLAUDE.md
+
+This step requires explicit user interaction for safety.
+
+**If CLAUDE.md exists:**
+1. Read existing CLAUDE.md fully
+2. Check if it has a `## TALOS Project Files` section
+3. If no TALOS section: **show the user exactly what you plan to append** and ask "Add TALOS section to existing CLAUDE.md?" — wait for explicit yes/no
+4. If TALOS section exists but is outdated: show the diff and ask to update
+5. If there are conflicts between existing conventions and TALOS conventions: **present both versions and ask the user to choose** — never silently override
+6. Do NOT modify any existing content without user approval
+
+**If no CLAUDE.md exists:** Create one with project info from agent output + TALOS section.
+
+The TALOS section to append/create:
 ```markdown
----
-type: project-index
-project: {{PROJECT_NAME}}
-created: {{DATE}}
-updated: {{DATE}}
----
-
-# {{PROJECT_NAME}}
-
-## Overview
-{{PROJECT_DESC from README or manifest — 2-3 sentences}}
-
-## Tech Stack
-| Component | Technology | Version |
-|-----------|-----------|---------|
-| Language  | {{detected}} | {{version}} |
-| Runtime   | {{detected}} | {{version}} |
-| Framework | {{detected}} | {{version}} |
-| Build     | `{{BUILD_CMD}}` | — |
-| Test      | `{{TEST_CMD}}` | — |
-| Lint      | `{{LINT_CMD}}` | — |
-
-## Structure
-| Directory | Purpose |
-|-----------|---------|
-{{each KEY_DIR from agent output}}
-
-## Entry Points
-| File | Purpose |
-|------|---------|
-{{each ENTRY_POINT from agent output}}
-
-## Key Components
-| Component | File(s) | Responsibility |
-|-----------|---------|---------------|
-{{each component from agent output}}
-
-## Dependencies
-| Package | Purpose | Dev? |
-|---------|---------|------|
-{{top 10-15 dependencies from manifest}}
-
-## Conventions
-{{coding conventions from agent output — naming, style, patterns}}
-
-## Architecture Notes
-{{high-level architecture from agent analysis}}
-```
-
-### Other .talos/ files
-
-- `.talos/plan.md` — create from template if missing. Don't overwrite if it has items.
-- `.talos/bugs.md` — **POPULATE** with TODOs/FIXMEs/HACKs found by the agent. Preserve existing entries.
-- `.talos/decisions.md` — **POPULATE** with architectural decisions found by the agent. Preserve existing entries.
-- `.talos/risks.md` — **POPULATE** with risks found by the agent. Preserve existing entries.
-- `.talos/debug/` — headless test scripts (see Step 5)
-
-**CRITICAL**: Every file must have real content after init. If a table is empty, re-read the agent output and populate it.
-
-## Step 4: Create/Merge Project CLAUDE.md
-
-If `CLAUDE.md` already exists in the project root:
-- Read it fully
-- Append a `## TALOS Project Files` section at the bottom (if not already present)
-- Do NOT overwrite or modify existing content
-
-If no CLAUDE.md exists, create one with:
-```markdown
-## Project: {{PROJECT_NAME}}
-
-{{PROJECT_DESC}}
-
-## Tech Stack
-| Component | Technology |
-|-----------|-----------|
-| Language  | {{from agent}} |
-| Framework | {{from agent}} |
-| Build     | `{{BUILD_CMD}}` |
-| Test      | `{{TEST_CMD}}` |
-| Lint      | `{{LINT_CMD}}` |
-
-## Structure
-{{KEY_DIRS with descriptions from agent}}
-
 ## TALOS Project Files
 - `.talos/index.md` — project overview, architecture, components
 - `.talos/bugs.md` — bug tracking
 - `.talos/decisions.md` — decision log
 - `.talos/risks.md` — risk register
 - `.talos/plan.md` — active plan (use /talos-plan)
-- `.talos/debug/` — headless test scripts
 ```
 
-## Step 5: Create Debug Scripts
+## Step 4: Register Project in Brain
 
-In `.talos/debug/`, create one test script per detected language:
-- TypeScript → `test-core.ts` (run with `npx tsx .talos/debug/test-core.ts`)
-- Python → `test-core.py` (run with `python .talos/debug/test-core.py`)
-- Rust → `test-core.rs`
-- Go → `test-core_test.go`
-
-Each script should:
-- Import key modules from the project (use the entry points and components from agent output)
-- Test core functions with simple assert calls
-- Cover edge cases (empty input, nulls, boundary values)
-- Run headlessly (no UI, no user interaction)
-- Use only project-local imports (no relative `../../` paths)
-- Update these scripts when project functions change (via /talos-go, /talos-review)
-
-## Step 6: Register Project
-
-Add to `~/.talos/config.yaml` under `projects:` (skip if already registered):
+Read `$VAULT/_brain/config.yaml`. Add under `projects:` if not already registered:
 ```yaml
 projects:
   {{PROJECT_NAME}}:
     path: {{absolute path}}
-    vault_entry: projects/{{name}}/notes.md
+    vault_entry: projects/{{name}}.md
 ```
 
-## Step 7: Create Vault Entry
+## Step 5: Create Vault Project Entry
 
-Create `$VAULT/projects/{{name}}/notes.md` (skip if exists):
-```yaml
----
-type: project
-tags: [project]
-status: active
-created: {{DATE}}
----
-```
-```markdown
-# {{PROJECT_NAME}}
-**Repo:** {{git remote or path}}
-**Tech:** {{stack summary}}
-**Status:** Active
-```
+Create `$VAULT/projects/{{PROJECT_NAME}}.md` (skip if exists). Read `_brain/link-index.yaml` for entities and **insert wikilinks inline as you write**.
 
-## Step 8: Log
+Include: frontmatter (type: project, tags, status, created, repo), Overview, Tech Stack table, Key Components (top 5), Architecture summary, Active Risks (top 3).
 
-Run this EXACT command via the Bash tool (do NOT manually edit the daily note):
-```bash
-talos log "init: {{PROJECT_NAME}} at {{path}}"
-```
+## Step 6: Log
+
+Run via Bash: `talos log "init: {{PROJECT_NAME}} at {{path}}"`

@@ -17,7 +17,7 @@ Search vault via QMD query for existing brainstorms/ideas on this topic. Read `_
 3. Each idea: 2-3 sentence description + key differentiator
 
 ## Phase 2: Evaluate
-Score each idea from 3 perspectives (1-10 each):
+Dispatch `talos-thoughts:perspective-reviewer` agent with the ideas to score from 3 perspectives (1-10 each):
 
 | # | Idea | User | Technical | Strategic | Avg |
 |---|------|------|-----------|-----------|-----|
@@ -32,8 +32,7 @@ Score each idea from 3 perspectives (1-10 each):
 - What to avoid and why
 
 ## Save
-Save results to vault as a reference note with frontmatter `type: reference, tags: [ideation, <topic>]`. Run `talos link <file>`.
+Save results to vault as a reference note with frontmatter `type: reference, tags: [ideation, <topic>]`.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — ideate: <brief outcome>`
+Run via Bash: `talos log "ideate: <brief outcome>"`

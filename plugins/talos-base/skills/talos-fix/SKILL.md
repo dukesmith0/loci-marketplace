@@ -27,9 +27,11 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 - Ambiguous broken links
 - Files with wrong type classification
 
+## Agents
+Dispatch the **linker** agent to resolve broken wikilinks by finding likely rename targets.
+
 ## Output
 Summary of fixes applied and issues requiring manual attention.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — fix: <brief outcome>`
+Run `talos log "fix: <brief outcome>"` via Bash.

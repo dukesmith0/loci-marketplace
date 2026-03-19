@@ -13,7 +13,7 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 2. Read `_brain/crash-buffer.md` — unfinished threads from last session
 3. Read `_brain/state.yaml` — system state if exists
 4. Read `_brain/profile.md` for user context
-5. Count files: `ls vault/ | wc -l` for rough size
+5. Count files: `ls $VAULT/ | wc -l` for rough size
 6. Check git status in vault for uncommitted changes
 
 ## Output
@@ -24,5 +24,4 @@ Report as concise summary:
 - Any uncommitted changes
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — status: <brief outcome>`
+Run `talos log "status: <brief outcome>"` via Bash.

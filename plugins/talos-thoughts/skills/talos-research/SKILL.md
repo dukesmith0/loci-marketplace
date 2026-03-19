@@ -33,8 +33,7 @@ What couldn't be answered, suggested next searches
 Actionable next steps based on findings
 
 ## Save
-Write research brief to vault with frontmatter `type: reference, confidence: <level>, tags: [research, <topic>]`. Run `talos link <file>`. Append to `_brain/changelog.md`.
+Write research brief to vault with frontmatter `type: reference, confidence: <level>, tags: [research, <topic>]`. Append to `_brain/changelog.md`.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — research: <brief outcome>`
+Run via Bash: `talos log "research: <brief outcome>"`

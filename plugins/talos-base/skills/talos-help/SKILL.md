@@ -28,13 +28,12 @@ description: List all available TALOS skills
 | /talos-fix | Fix broken links, bad frontmatter, conflicts |
 | /talos-link | Insert wikilinks in vault files |
 | /talos-cleanup | Find orphan and stale files |
-| /talos-diff | Narrative vault change summary |
 | /talos-config | View TALOS configuration |
 | /talos-help | This help listing |
 
 ### Thinking (talos-thoughts)
 | /talos-think | Socratic reasoning walkthrough |
-| /talos-storm | SCAMPER brainstorming with scoring |
+| /talos-brainstorm | SCAMPER brainstorming with scoring |
 | /talos-ideate | Idea generation with perspective review |
 | /talos-research | Deep research with vault + web sources |
 

@@ -15,11 +15,10 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
    - Frontmatter: type: contact, name, company, role, met_date, followup_date
    - Content: how you met, context, notes
    - Read `_brain/schemas.yaml` for contact template
-4. Run `talos link <file>` to connect to related notes
+4. Add [[wikilinks]] inline while writing (read `_brain/link-index.yaml` for known entities)
 
 ## Output
 Contact card with key details and linked interactions.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — contact: <brief outcome>`
+Run via Bash: `talos log "contact: <brief outcome>"`

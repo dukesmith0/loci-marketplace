@@ -14,16 +14,18 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
    - Check `_brain/link-index.yaml` for connected notes
    - Check journal/ for episodic mentions
 2. Read top results via QMD `get` or `multi_get`
-3. Append search query and result count to `_brain/search-log.txt`. If 0 results, also append to `_brain/gaps.txt`.
+3. If 0 results on any search: append query + date to `_brain/gaps.txt`.
 4. Synthesize into structured brief:
    - **Facts**: confirmed information
    - **Episodes**: when this came up (from journal)
    - **Connections**: related topics via link-index
    - **Gaps**: what's missing
 
+## Agents
+Dispatch the **researcher** agent to gather and cross-reference sources across memory types in parallel.
+
 ## Output
 Comprehensive briefing with all vault knowledge on the topic, organized by memory type.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — brief: <brief outcome>`
+Run `talos log "brief: <brief outcome>"` via Bash.

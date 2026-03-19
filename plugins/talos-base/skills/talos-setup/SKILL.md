@@ -16,5 +16,8 @@ Run `which talos` via Bash. If available, proceed. If not, create config manuall
 ## Without CLI (manual fallback)
 1. Ask user for vault path
 2. Create `~/.talos/config.yaml` with vault_path
-3. Create `_brain/` folder structure in vault: profile.md, priorities.md, pinned/, crash-buffer.md, schemas.yaml, link-index.yaml, word-freq.txt, access-log.txt, search-log.txt, gaps.txt, conflicts.md, changelog.md
+3. Create `_brain/` folder structure in vault: profile.md, priorities.md, pinned/, crash-buffer.md, schemas.yaml, skill-config.yaml, hooks-config.yaml, link-index.yaml, word-freq.txt, access-log.txt, search-log.txt, gaps.txt, conflicts.md, changelog.md, state.yaml
 4. Init git in vault if not already
+
+## Activity Log
+Run `talos log "setup: <brief outcome>"` via Bash.

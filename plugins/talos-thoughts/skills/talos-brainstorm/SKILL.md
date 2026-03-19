@@ -1,9 +1,9 @@
 ---
-name: talos-storm
+name: talos-brainstorm
 description: SCAMPER brainstorming with scoring and vault integration
 ---
 
-# /talos-storm — SCAMPER Brainstorm
+# /talos-brainstorm — SCAMPER Brainstorm
 
 ## Step 0: Resolve Environment
 Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/config.yaml`.
@@ -24,7 +24,7 @@ Apply SCAMPER to the problem:
 Generate 10+ ideas. No judgment yet.
 
 ## Phase 2: Score
-Rate each idea in a table:
+Dispatch `talos-thoughts:brainstorm-scorer` agent with the generated ideas to rate each:
 
 | # | Idea | Feasibility | Impact | Novelty | Effort | Total |
 
@@ -37,8 +37,7 @@ Take top 3 by score. For each:
 - Estimate timeline
 
 ## Save
-Save results to vault as a reference note with frontmatter `type: reference, tags: [brainstorm, <topic>]`. Run `talos link <file>`.
+Read `_brain/link-index.yaml` for known entities. Save results to vault as a reference note with frontmatter `type: idea, tags: [brainstorm, <topic>]`. **Insert wikilinks inline as you write.**
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — storm: <brief outcome>`
+Run via Bash: `talos log "brainstorm: <brief outcome>"`

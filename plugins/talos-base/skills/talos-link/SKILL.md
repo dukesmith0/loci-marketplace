@@ -13,9 +13,11 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 2. If no file specified: find recently modified files in vault (`git diff --name-only HEAD~5`) and run `talos link` on each
 3. Display what links were added
 
+## Agents
+Dispatch the **linker** agent to identify link candidates across multiple files in parallel.
+
 ## Output
 List of files processed and links inserted.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — link: <brief outcome>`
+Run `talos log "link: <brief outcome>"` via Bash.

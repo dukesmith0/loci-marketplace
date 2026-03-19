@@ -1,5 +1,5 @@
 #!/bin/bash
-# Log vault file changes to _brain/changelog.md
+# Log vault file reads to _brain/access-log.txt
 CONFIG="$HOME/.talos/config.yaml"
 [ ! -f "$CONFIG" ] && exit 0
 VAULT=$(grep 'vault_path:' "$CONFIG" | sed 's/vault_path: *//' | tr -d '"' | tr -d "'")
@@ -20,6 +20,5 @@ RELPATH="${NORM_FILE#$NORM_VAULT/}"
 # Skip _brain/ system files
 case "$RELPATH" in _brain/*|_templates/*) exit 0 ;; esac
 
-# Create changelog if missing, then append
-touch "$VAULT/_brain/changelog.md"
-echo "- $(date +%H:%M) Modified: $RELPATH" >> "$VAULT/_brain/changelog.md"
+# Append access record
+echo "$(date +%Y-%m-%d_%H:%M) $RELPATH" >> "$VAULT/_brain/access-log.txt"

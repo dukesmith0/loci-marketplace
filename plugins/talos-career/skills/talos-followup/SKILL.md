@@ -23,5 +23,4 @@ Prioritized table:
 Offer to draft follow-up messages for selected items.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — followup: <brief outcome>`
+Run via Bash: `talos log "followup: <brief outcome>"`

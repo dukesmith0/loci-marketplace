@@ -42,7 +42,7 @@ Start a new Claude Code session. The SessionStart hook will load your brain cont
 
 ### talos-base (Recommended)
 
-**Core brain access.** 20 skills, 5 agents, 3 hooks.
+**Core brain access.** 19 skills, 5 agents, 4 hooks.
 
 This is the foundation plugin. It gives Claude persistent memory across sessions, semantic search over your vault, and automatic activity tracking.
 
@@ -60,7 +60,6 @@ This is the foundation plugin. It gives Claude persistent memory across sessions
 | `/talos-fix` | Find and fix broken links, bad frontmatter, contradictions |
 | `/talos-cleanup` | Identify orphaned and stale content for archival |
 | `/talos-link` | Scan files for entities, add [[wikilinks]] |
-| `/talos-diff` | Summarize recent vault changes narratively |
 | `/talos-sync` | Git pull + push vault |
 | `/talos-status` | Current brain state report |
 | `/talos-health` | System health check |
@@ -105,7 +104,7 @@ Brainstorming, Socratic dialogue, idea evaluation, and deep research — all sav
 | Skill | What it does |
 |-------|-------------|
 | `/talos-think` | Socratic walkthrough — guided reasoning, never gives answer directly |
-| `/talos-storm` | SCAMPER brainstorming — generate, score, refine top ideas |
+| `/talos-brainstorm` | SCAMPER brainstorming — generate, score, refine top ideas |
 | `/talos-ideate` | Idea generation with 3-perspective scoring |
 | `/talos-research` | Deep research — vault + web search → structured brief |
 

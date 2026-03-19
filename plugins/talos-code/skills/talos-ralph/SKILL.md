@@ -11,10 +11,11 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 ## Setup
 1. Clarify with user: What are the completion criteria?
 2. Set max iterations (default: 10, ask user to confirm)
+3. Read `.talos/index.md` and `CLAUDE.md` for project context
 
 ## Loop (each iteration)
-1. **Assess**: What is the current state? What's left?
-2. **Act**: Take the most impactful next action
+1. **Assess**: What is the current state? What's left to do?
+2. **Act**: Implement one concrete change — write code, fix a bug, add a test, update config. Run tests after each change.
 3. **Check**: Are completion criteria met?
    - Yes → exit loop, report done
    - No → continue
@@ -22,14 +23,11 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 ## Stuck Detection
 If same issue persists for 3+ iterations:
 - Stop current approach
-- Log what was tried
+- Log what was tried to `.talos/bugs.md`
 - Try a fundamentally different approach
 - If still stuck after 2 different approaches, stop and ask user
 
 ## End
-- Log session to daily note via /talos-log
+- Update `.talos/` files if bugs found or decisions made
+- Log via Bash: `talos log "ralph: <iterations> iterations, <outcome>"`
 - Report: iterations used, approach taken, outcome
-
-## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — ralph: <brief outcome>`

@@ -18,5 +18,4 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 Confirm which pinned memory was removed.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — unpin: <brief outcome>`
+Run `talos log "unpin: <brief outcome>"` via Bash.

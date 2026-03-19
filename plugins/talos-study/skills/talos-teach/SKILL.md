@@ -28,5 +28,4 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 - Point to specific gaps, don't just say "incomplete"
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — teach: <brief outcome>`
+Run via Bash: `talos log "teach: <brief outcome>"`

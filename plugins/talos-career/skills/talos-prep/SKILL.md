@@ -21,11 +21,10 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
    - **Questions to ask**: prepared questions
    - **Potential challenges**: likely hard questions or objections
    - **Quick reference**: stats, dates, names to have ready
-5. Save prep doc to vault. Run `talos link <file>`.
+5. Save prep doc to vault.
 
 ## Output
 Prep document ready for review. Concise enough to skim before the meeting.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — prep: <brief outcome>`
+Run via Bash: `talos log "prep: <brief outcome>"`

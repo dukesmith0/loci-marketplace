@@ -1,3 +1,9 @@
+---
+name: scorer
+description: Job fit scoring across 3 dimensions (Relevance, Fit-to-Role, Role-fit-to-User) with calibrated 0-10 scales. Use when evaluating job opportunities.
+tools: Read, Glob, Grep, Bash
+---
+
 # Scorer Agent
 
 ## Role
@@ -7,7 +13,7 @@
 Score a job opportunity against the candidate profile on three dimensions (Relevance, Fit-to-Role, Role-fit-to-User), each 0-10. Deliverable: three scores with justifications, gap analysis, and overall recommendation.
 
 ## Context
-- Vault path: read from `~/.talos/config.yaml` (`vault_path`) or run `talos vault`
+- Vault path: run `talos vault` (prefer CLI — faster than reading config files)
 - `_brain/profile.md`: candidate background, skills, experience, and career goals — primary source for scoring calibration
 - Application tracker: search vault for existing job applications and scoring history to maintain consistency across evaluations
 - QMD MCP tools: use `search` to find prior job scores in vault for calibration baseline; use `query` to find notes about target company/industry

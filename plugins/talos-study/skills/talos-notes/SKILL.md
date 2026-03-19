@@ -16,11 +16,9 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
    - Content structured with headers and bullet points
    - Wikilinks to course materials and related vault notes
 4. Cross-reference: link to existing notes on overlapping concepts
-5. Run `talos link <file>` via Bash
 
 ## Output
 Confirm note saved with path and cross-references created.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — notes: <brief outcome>`
+Run via Bash: `talos log "notes: <brief outcome>"`

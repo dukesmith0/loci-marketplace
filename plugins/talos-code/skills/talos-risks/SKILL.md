@@ -22,7 +22,11 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
    - Missing error handling
    - Data integrity gaps
    - Scale/performance bottlenecks
-5. Check dependencies: outdated packages, known CVEs
+5. Check dependencies for known CVEs:
+   - Node.js: `npm audit`
+   - Python: `pip audit` or `safety check`
+   - Rust: `cargo audit`
+   - Go: `govulncheck ./...`
 6. Write findings to `.talos/risks.md`
 7. Offer to save findings to vault for cross-project reference
 
@@ -33,5 +37,4 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 Severities: critical, high, medium, low
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — risks: <brief outcome>`
+Run via Bash: `talos log "risks: <brief outcome>"`

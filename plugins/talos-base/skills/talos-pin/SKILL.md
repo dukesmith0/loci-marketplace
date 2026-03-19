@@ -20,5 +20,4 @@ Pinned files are loaded every session start. Keep them concise and actionable.
 Confirm what was pinned and the filename.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — pin: <brief outcome>`
+Run `talos log "pin: <brief outcome>"` via Bash.

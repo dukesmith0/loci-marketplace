@@ -11,16 +11,12 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 ## Steps
 1. Run `git log --oneline -20` in current project directory
 2. Run `git diff --stat HEAD~10` for file-level changes
-3. Group changes by area:
-   - Features added
-   - Bugs fixed
-   - Refactoring done
-   - Config/infra changes
-4. Identify patterns: hot files, active areas, neglected areas
+3. Dispatch `talos-code:diff-analyst` agent with the git log and diff output to:
+   - Group changes by area (features, bugs, refactoring, config/infra)
+   - Identify patterns: hot files, active areas, neglected areas
 
 ## Output
 Narrative summary of recent project changes grouped by topic. Not raw git output.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — diff: <brief outcome>`
+Run via Bash: `talos log "diff: <brief outcome>"`

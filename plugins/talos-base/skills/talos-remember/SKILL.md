@@ -16,15 +16,16 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
    - "I'm planning X" → plan, confidence: medium
    - "What if X" → idea, confidence: low
    - Ambiguous → ASK before storing
-4. If type is "fact": search vault for contradictions. Read `_brain/conflicts.md`. If a contradicting note exists on the same topic, flag it and ask the user which is correct before writing.
-5. Generate filename from content (kebab-case, descriptive)
-6. Write .md file with proper frontmatter + content
-7. Run `talos link <file>` via Bash to insert wikilinks
-8. Append entry to `_brain/changelog.md`
+4. If type is "fact": search vault via QMD `query` for contradictions. Read `_brain/conflicts.md`. If contradicting note exists, flag and ask user which is correct before writing.
+5. Read `_brain/link-index.yaml` for known entity names
+6. Generate filename from content (kebab-case, descriptive)
+7. Write .md file with proper frontmatter + content. **Insert wikilinks inline as you write** — wrap known entities in `[[double brackets]]` on first mention per section. Do not write the file then go back to add links.
+
+## Agents
+Dispatch the **classifier** agent to determine note type and confidence level.
 
 ## Output
 Confirm what was stored, where, and any contradictions found.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — remember: <brief outcome>`
+Run `talos log "remember: <brief outcome>"` via Bash.

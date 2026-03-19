@@ -12,16 +12,16 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 1. Read the specified vault file
 2. Identify the section/topic to extract (from user's argument)
 3. Read `_brain/schemas.yaml` for proper frontmatter
-4. Create new reference note with:
+4. Read `_brain/link-index.yaml` for known entity names
+5. Create new reference note with:
    - Extracted content, restructured as standalone
    - Proper frontmatter
    - Backlink to source file
-5. Update source file: replace extracted content with wikilink to new note
-6. Run `talos link <new-file>` via Bash
+   - **Wikilinks inserted inline** — wrap known entities as you write, first mention per section
+6. Update source file: replace extracted content with wikilink to new note
 
 ## Output
 Confirm extraction: source file, new note path, content moved.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — extract: <brief outcome>`
+Run `talos log "extract: <brief outcome>"` via Bash.

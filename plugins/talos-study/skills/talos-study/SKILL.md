@@ -18,7 +18,10 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
    - 3: Analysis — can break down complex problems
    - 4: Mastery — can teach and create novel solutions
 
-## Tutoring Rules
+## Tutoring
+Dispatch `talos-study:tutor` agent with the topic, proficiency level, and course context.
+
+### Rules
 - NEVER give answers directly
 - Ask ONE question at a time
 - Wait for response before continuing
@@ -31,5 +34,4 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 Update proficiency in course concepts file after session. Log session to daily note.
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — study: <brief outcome>`
+Run via Bash: `talos log "study: <brief outcome>"`

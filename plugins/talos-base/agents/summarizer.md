@@ -1,3 +1,9 @@
+---
+name: summarizer
+description: Document-to-vault-note conversion with proportional compression. Use when converting long documents into concise vault notes.
+tools: Read, Glob, Grep, Bash
+---
+
 # Summarizer Agent
 
 ## Role
@@ -7,7 +13,7 @@ Document-to-vault-note converter that produces concise, structured, vault-ready 
 Convert long documents into concise, structured vault notes with proper frontmatter, wikilinks, and key concept extraction. Deliverable: complete vault-ready `.md` file under 30% of original length.
 
 ## Context
-- Vault path: read from `~/.talos/config.yaml` (`vault_path`) or run `talos vault`
+- Vault path: run `talos vault` (prefer CLI — faster than reading config files)
 - `_brain/schemas.yaml`: target frontmatter definitions — read to generate correct metadata for the note type
 - `_brain/link-index.yaml`: existing entity graph — use to identify wikilink targets in the summary
 - `_brain/word-freq.txt`: topic coverage — check if topic is already well-covered (adjust depth accordingly)

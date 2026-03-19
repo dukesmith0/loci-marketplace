@@ -13,14 +13,16 @@ Get vault path: run `talos vault` via Bash, or read `vault_path` from `~/.talos/
 2. Implement the requested change directly
 3. Run tests if applicable
 4. Commit with descriptive message
-5. Log to daily note via /talos-log
+5. Log via Bash: `talos log "oneshot: <brief outcome>"`
 
 ## Rules
 - No plan file needed — this is for small, self-contained tasks
 - If the task grows beyond ~30 minutes of work, stop and suggest /talos-plan
 - Still follow project conventions from CLAUDE.md
-- Update .talos/decisions.md if any design decisions were made
+- Update relevant .talos/ files after completing:
+  - `.talos/decisions.md` — if design decisions were made
+  - `.talos/bugs.md` — if bugs were found or fixed
+  - `.talos/risks.md` — if new risks were discovered
 
 ## Activity Log
-Append to today's daily note (journal/YYYY/MM/YYYY-MM-DD.md) under Auto-Log:
-`- HH:MM — oneshot: <brief outcome>`
+Run via Bash: `talos log "oneshot: <brief outcome>"`
